@@ -12,21 +12,19 @@ Minikube kubernetes setup guide using VirtualBox(Windows)
 
 ## Getting Started
 
-1) Setup VirtualBox
+Setup VirtualBox
 	-	https://www.virtualbox.org/wiki/Downloads
 	
-2) Download Minikube
+Download Minikube
 	-	curl -L https://github.com/kubernetes/minikube/releases/download/v1.5.2/minikube-windows-amd64.exe --output minikube.exe
 	
-3) Download kubernetes 
+Download kubernetes 
 	-	curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.16.0/bin/windows/amd64/kubectl.exe --output kubectl.exe
 
-4) Execute minikube below command
+Execute minikube below command
 	-	minikube.exe start --vm-driver=virtualbox --bootstrapper=kubeadm --kubernetes-version=v1.16.0 --memory='4000mb'
 
-	Command details: 
-		minikube.exe - downloaded exe file in step-1, Use the same file for execution
-		
+		minikube.exe		-	Use the downloaded file for all minikube command execution
 		--vm-driver		-	Required for specifying driver type like virtualbox or sometime someone uses hypervisor.
 						(In this  tutorial I am using virtualbox)
 		--bootstrapper		-	Using for kubernetes kubeadm installation in minikube vm-driver		
@@ -35,7 +33,7 @@ Minikube kubernetes setup guide using VirtualBox(Windows)
 
 After execution of above command wait for some time for VM to be up and running.
 
-5) Verify minikube installation using below command:
+Verify minikube installation using below command:
 	-	minikube.exe status
 	# Expected Output
 		host: Running
@@ -43,10 +41,10 @@ After execution of above command wait for some time for VM to be up and running.
 		apiserver: Running
 		kubeconfig: Configured
 
-6) Want to ssh in minikube VM then use below command:
+Want to ssh in minikube VM then use below command:
 	-	minikube.exe ssh
 	
-7) Add Kubectl config file location in environment variable
+Add Kubectl config file location in environment variable
 	
 	Sometime kubectl file not able to find config file, Better to configure the config file path using below process.
 	
@@ -55,21 +53,23 @@ After execution of above command wait for some time for VM to be up and running.
 	Variable - KUBECONFIG
 	Value- Kubectl context config file(Default path- C:/Users/username/.kube/config)
 
-8) Verify context added in file correctly for minikube
+Verify context added in file correctly for minikube
 	
 	- 	kubectl.exe config get-contexts
 	
 	It will show the current context, i.e. minikube 
 	
-9)	Verify kubernetes installation in minikube VM, run below command
+Verify kubernetes installation in minikube VM, run below command
 	
 	-	kubectl.exe cluster-info
 	
 	This command will tell status for running kubernetes cluster.
 	Note:- Make sure for kubectl.exe always use the one which is installed in 3-step.
 
-### Sample app installation in minikube cluster
-	##	kubectl.exe create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.10
+## Sample app installation in minikube cluster
+
+	Install Sample app
+		kubectl.exe create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.10
 			-	create		-	It will create/apply new configuration in kubernetes.
 			-	deployment	-	Please follow below mentioned link.
 			-	hello-minikube	-	deployment name you can provide whatever name you like
@@ -82,10 +82,10 @@ After execution of above command wait for some time for VM to be up and running.
 					-	Service	-	https://kubernetes.io/docs/concepts/services-networking/service/
 					-	ReplicaSet-	https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 
-	## Expose sample app deployment using NodePort
+	 Expose sample app deployment using NodePort
 	
-	-	# Expose using below command
-			kubectl.exe expose deployment hello-minikube --type=NodePort --port=8080 
+		# Expose using below command
+				kubectl.exe expose deployment hello-minikube --type=NodePort --port=8080 
 		
 			Here we are eposing sample app to outside the cluster on node(VM) level.
 			-	expose		-	We usually use expose for exposing the services to outer world
@@ -98,14 +98,14 @@ After execution of above command wait for some time for VM to be up and running.
 							-LoadBalancer	-	It will expose deployment to LoadBalancer.
 			-	--port		-	exposed port no, So now this service is exposed on minikube VM port 8080.
 
-	-	# Verify sample app status
+		# Verify sample app status
 			-	kubectl get pods(verify pod is running or not)
 			- 	kubectl get svc (verify svc is exposed on particualar port)
 	
-	-	# Fetch Exposed service url using below command	
+		# Fetch Exposed service url using below command	
 			minikube.exe service hello-minikube --url
 
-	-	# Run the exposed url in browser, you will be able to access the deployment.
+		# Run the exposed url in browser, you will be able to access the deployment.
 
 ### Setup minikube with RBAC(Secured)
 	-	https://medium.com/@HoussemDellai/rbac-with-kubernetes-in-minikube-4deed658ea7b
