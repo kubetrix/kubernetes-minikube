@@ -1,27 +1,27 @@
 # kubernetes-minikube
 Minikube setup with kubernetes
 
-# Project Title
-
+# Title
 Minikube kubernetes setup guide using VirtualBox(Windows)
 
 ### Prerequisites
-	Gitbash software required for below commands execution.
-	Please install using below link
+	Gitbash software required for below execution.
+		Please install using below link
 		-	https://gitforwindows.org/
 
 ## Getting Started
 
-Setup VirtualBox
+### Setup VirtualBox
 	-	https://www.virtualbox.org/wiki/Downloads
 	
-Download Minikube
+### Download Minikube
 	-	curl -L https://github.com/kubernetes/minikube/releases/download/v1.5.2/minikube-windows-amd64.exe --output minikube.exe
 	
-Download kubernetes 
+### Download kubernetes 
 	-	curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.16.0/bin/windows/amd64/kubectl.exe --output kubectl.exe
 
-Execute minikube below command
+## Execute minikube below command
+
 	-	minikube.exe start --vm-driver=virtualbox --bootstrapper=kubeadm --kubernetes-version=v1.16.0 --memory='4000mb'
 
 		minikube.exe		-	Use the downloaded file for all minikube command execution
@@ -33,18 +33,20 @@ Execute minikube below command
 
 After execution of above command wait for some time for VM to be up and running.
 
-Verify minikube installation using below command:
-	-	minikube.exe status
-	# Expected Output
-		host: Running
-		kubelet: Running
-		apiserver: Running
-		kubeconfig: Configured
+## Verify minikube installation using below command:
 
-Want to ssh in minikube VM then use below command:
+	-	minikube.exe status
+	
+		# Expected Output
+			host: Running
+			kubelet: Running
+			apiserver: Running
+			kubeconfig: Configured
+
+## If you want to SSH in minikube VM then use below command:
 	-	minikube.exe ssh
 	
-Add Kubectl config file location in environment variable
+## Add Kubectl config file location in environment variable
 	
 	Sometime kubectl file not able to find config file, Better to configure the config file path using below process.
 	
@@ -53,13 +55,13 @@ Add Kubectl config file location in environment variable
 	Variable - KUBECONFIG
 	Value- Kubectl context config file(Default path- C:/Users/username/.kube/config)
 
-Verify context added in file correctly for minikube
+## Verify context added in file correctly for minikube
 	
 	- 	kubectl.exe config get-contexts
 	
 	It will show the current context, i.e. minikube 
 	
-Verify kubernetes installation in minikube VM, run below command
+## Verify kubernetes installation in minikube VM, run below command
 	
 	-	kubectl.exe cluster-info
 	
@@ -68,7 +70,7 @@ Verify kubernetes installation in minikube VM, run below command
 
 ## Sample app installation in minikube cluster
 
-	Install Sample app
+	### Install Sample app
 		kubectl.exe create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.10
 			-	create		-	It will create/apply new configuration in kubernetes.
 			-	deployment	-	Please follow below mentioned link.
@@ -82,7 +84,7 @@ Verify kubernetes installation in minikube VM, run below command
 					-	Service	-	https://kubernetes.io/docs/concepts/services-networking/service/
 					-	ReplicaSet-	https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 
-	 Expose sample app deployment using NodePort
+	### Expose sample app deployment using NodePort
 	
 		# Expose using below command
 				kubectl.exe expose deployment hello-minikube --type=NodePort --port=8080 
