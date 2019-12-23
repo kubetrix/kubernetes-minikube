@@ -71,7 +71,7 @@ After execution of above command wait for some time for VM to be up and running.
 
 ## Sample app installation in minikube cluster
 
-	<strong>Install Sample app</strong>
+	**Install Sample app**
 		kubectl.exe create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.10
 			-	create		-	It will create/apply new configuration in kubernetes.
 			-	deployment	-	Please follow below mentioned link.
