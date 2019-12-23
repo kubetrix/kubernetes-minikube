@@ -48,12 +48,13 @@ After execution of above command wait for some time for VM to be up and running.
 	
 ## Add Kubectl config file location in environment variable
 	
-	Sometime kubectl file not able to find config file, Better to configure the config file path using below process.
+	Sometime kubectl.exe command not able to find config file, It will be Better to configure the config file path using below process.
 	
- 	Add in environment variable as mentioned below
-	-> Environment Variable- Go To My Computer Properties->Advance System Settings-> Environment Variables(At bottom)-> Add new variable under User variable for user field, as mentioned below
-	Variable - KUBECONFIG
-	Value- Kubectl context config file(Default path- C:/Users/username/.kube/config)
+ 	**Add in environment variable as mentioned below**
+		My-PC Properties->Advance System Settings-> Environment Variables(At bottom)-> Add new variable under User variable for user field, as mentioned below
+
+	Variable 	- KUBECONFIG
+	Value		- Kubectl context config file path (Default path- C:/Users/username/.kube/config)
 
 ## Verify context added in file correctly for minikube
 	
@@ -70,7 +71,7 @@ After execution of above command wait for some time for VM to be up and running.
 
 ## Sample app installation in minikube cluster
 
-	### Install Sample app
+	**Install Sample app**
 		kubectl.exe create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.10
 			-	create		-	It will create/apply new configuration in kubernetes.
 			-	deployment	-	Please follow below mentioned link.
@@ -84,9 +85,9 @@ After execution of above command wait for some time for VM to be up and running.
 					-	Service	-	https://kubernetes.io/docs/concepts/services-networking/service/
 					-	ReplicaSet-	https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 
-	### Expose sample app deployment using NodePort
+	**Expose sample app deployment using NodePort**
 	
-		# Expose using below command
+		> Expose using below command
 				kubectl.exe expose deployment hello-minikube --type=NodePort --port=8080 
 		
 			Here we are eposing sample app to outside the cluster on node(VM) level.
@@ -100,14 +101,14 @@ After execution of above command wait for some time for VM to be up and running.
 							-LoadBalancer	-	It will expose deployment to LoadBalancer.
 			-	--port		-	exposed port no, So now this service is exposed on minikube VM port 8080.
 
-		# Verify sample app status
+		> Verify sample app status
 			-	kubectl get pods(verify pod is running or not)
 			- 	kubectl get svc (verify svc is exposed on particualar port)
 	
-		# Fetch Exposed service url using below command	
+		> Fetch Exposed service url using below command	
 			minikube.exe service hello-minikube --url
 
-		# Run the exposed url in browser, you will be able to access the deployment.
+		> Run the exposed url in browser, you will be able to access the deployment.
 
 ### Setup minikube with RBAC(Secured)
 	-	https://medium.com/@HoussemDellai/rbac-with-kubernetes-in-minikube-4deed658ea7b
