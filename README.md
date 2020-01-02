@@ -33,9 +33,6 @@ Minikube setup with kubernetes using VirtualBox(Windows)
 | --kubernetes-version |  Use Kubernetes version which you want, I have tested the same using v1.16.0|
 | --memory |  Please specify the memory for minikube vm, default memory will be 2000mb|
 
-TODO: 
-> minikube.exe- Use the downloaded file for all minikube command execution
-
 > **After execution wait for some time for VM to be up and running.**
 
 #### Verify minikube installation using below command
