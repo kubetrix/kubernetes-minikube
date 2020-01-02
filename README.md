@@ -1,8 +1,6 @@
 # kubernetes-minikube
-Minikube setup with kubernetes
 
-# Title
-Minikube kubernetes setup guide using VirtualBox(Windows)
+Minikube setup with kubernetes using VirtualBox(Windows)
 
 #### Prerequisites
 
