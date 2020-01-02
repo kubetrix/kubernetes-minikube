@@ -8,21 +8,22 @@ Minikube kubernetes setup guide using VirtualBox(Windows)
 	Gitbash software required for below execution.
 		Please install using below link
 		-	https://gitforwindows.org/
-
+	Note:- Use Gitbash for command execution
+	
 ## Getting Started
 
 ### Setup VirtualBox (Download using browser)
 	-	https://www.virtualbox.org/wiki/Downloads
 	
-### Download Minikube (Use Gitbash for command execution)
-	-	curl -L https://github.com/kubernetes/minikube/releases/download/v1.5.2/minikube-windows-amd64.exe --output minikube.exe
+### Download Minikube 
+	command - curl -L https://github.com/kubernetes/minikube/releases/download/v1.5.2/minikube-windows-amd64.exe --output minikube.exe
 	
 ### Download kubernetes (Use Gitbash for command execution)
-	-	curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.16.0/bin/windows/amd64/kubectl.exe --output kubectl.exe
+	command - curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.16.0/bin/windows/amd64/kubectl.exe --output kubectl.exe
 
 ## Execute minikube below command (Use Gitbash for command execution)
 
-	-	minikube.exe start --vm-driver=virtualbox --bootstrapper=kubeadm --kubernetes-version=v1.16.0 --memory='4000mb'
+	command - minikube.exe start --vm-driver=virtualbox --bootstrapper=kubeadm --kubernetes-version=v1.16.0 --memory='4000mb'
 
 		minikube.exe		-	Use the downloaded file for all minikube command execution
 		--vm-driver		-	Required for specifying driver type like virtualbox or sometime someone uses hypervisor.
@@ -35,7 +36,7 @@ After execution of above command wait for some time for VM to be up and running.
 
 ## Verify minikube installation using below command (Use Gitbash for command execution):
 
-	-	minikube.exe status
+	command - minikube.exe status
 	
 		# Expected Output
 			host: Running
@@ -44,7 +45,7 @@ After execution of above command wait for some time for VM to be up and running.
 			kubeconfig: Configured
 
 ## If you want to SSH in minikube VM then use below command (Use Gitbash for command execution):
-	-	minikube.exe ssh
+	command - minikube.exe ssh
 	
 ## Add Kubectl config file location in environment variable (Use Windows UI)
 	
@@ -58,13 +59,13 @@ After execution of above command wait for some time for VM to be up and running.
 
 ## Verify context added in file correctly for minikube (Use Gitbash for command execution)
 	
-	- 	kubectl.exe config get-contexts
+	command - kubectl.exe config get-contexts
 	
 	It will show the current context(Current pointing cluster), i.e. minikube 
 	
 ## Verify kubernetes installation in minikube VM, run below command (Use Gitbash for command execution)
 	
-	-	kubectl.exe cluster-info
+	command - kubectl.exe cluster-info
 	
 	This command will tell status for running kubernetes cluster.
 	Note:- Make sure for kubectl.exe always use the one which is installed in 3-step.
@@ -72,7 +73,7 @@ After execution of above command wait for some time for VM to be up and running.
 ## Sample app installation in minikube cluster (Use Gitbash for command execution)
 
 	**Install Sample app**
-		kubectl.exe create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.10
+	command - kubectl.exe create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.10
 			-	create		-	It will create/apply new configuration in kubernetes.
 			-	deployment	-	Please follow below mentioned link.
 			-	hello-minikube	-	deployment name you can provide whatever name you like
@@ -88,7 +89,7 @@ After execution of above command wait for some time for VM to be up and running.
 	**Expose sample app deployment using NodePort**
 	
 		> Expose using below command
-				kubectl.exe expose deployment hello-minikube --type=NodePort --port=8080 
+			command - kubectl.exe expose deployment hello-minikube --type=NodePort --port=8080 
 		
 			Here we are eposing sample app to outside the cluster on node(VM) level.
 			-	expose		-	We usually use expose for exposing the services to outer world
@@ -102,11 +103,11 @@ After execution of above command wait for some time for VM to be up and running.
 			-	--port		-	exposed port no, So now this service is exposed on minikube VM port 8080.
 
 		> Verify sample app status
-			-	kubectl get pods(verify pod is running or not)
-			- 	kubectl get svc (verify svc is exposed on particualar port)
+			command - kubectl get pods(verify pod is running or not)
+			command - kubectl get svc (verify svc is exposed on particualar port)
 	
 		> Fetch Exposed service url using below command	
-			minikube.exe service hello-minikube --url
+			command - minikube.exe service hello-minikube --url
 
 		> Run the exposed url in browser, you will be able to access the deployment.
 
@@ -122,10 +123,10 @@ After execution of above command wait for some time for VM to be up and running.
 	
 ### UNInstall Minikube/Kubectl  
 	> Stop Minikube VM
-		-	minikube.exe stop
+		command - minikube.exe stop
 		
 	> Delete Minikube VM configuration
-		-	minikube.exe delete
+		command - minikube.exe delete
 		
 	> Delete Folder Manually
 		Delete Minikube Folder
