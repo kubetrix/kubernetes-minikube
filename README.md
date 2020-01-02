@@ -4,84 +4,91 @@ Minikube setup with kubernetes
 # Title
 Minikube kubernetes setup guide using VirtualBox(Windows)
 
-### Prerequisites (Download using browser)
-	Gitbash software required for below execution.
-		Please install using below link
-		-	https://gitforwindows.org/
-	Note:- Use Gitbash for command execution
+#### Prerequisites
+
+- Gitbash software required for all below executions, Please download using below link
+
+		https://gitforwindows.org/
+
+	> Note:- Use Gitbash for all command execution
 	
-## Getting Started
+#### Getting Started
 
-### Setup VirtualBox (Download using browser)
-	-	https://www.virtualbox.org/wiki/Downloads
+#### Setup VirtualBox
 	
-### Download Minikube 
-	**command **- curl -L https://github.com/kubernetes/minikube/releases/download/v1.5.2/minikube-windows-amd64.exe --output minikube.exe
+	https://www.virtualbox.org/wiki/Downloads
+
+#### Download Minikube
+ 
+	curl -L https://github.com/kubernetes/minikube/releases/download/v1.5.2/minikube-windows-amd64.exe --output minikube.exe
 	
-### Download kubernetes (Use Gitbash for command execution)
-	command - curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.16.0/bin/windows/amd64/kubectl.exe --output kubectl.exe
+#### Download kubernetes (Use Gitbash for command execution)
+	curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.16.0/bin/windows/amd64/kubectl.exe --output kubectl.exe
 
-## Execute minikube below command (Use Gitbash for command execution)
+#### Minikube VM Setup with Kubernetes Cluster 
 
-	command - minikube.exe start --vm-driver=virtualbox --bootstrapper=kubeadm --kubernetes-version=v1.16.0 --memory='4000mb'
+	minikube.exe start --vm-driver=virtualbox --bootstrapper=kubeadm --kubernetes-version=v1.16.0 --memory='4000mb'
 
-		minikube.exe		-	Use the downloaded file for all minikube command execution
-		--vm-driver		-	Required for specifying driver type like virtualbox or sometime someone uses hypervisor.
-						(In this  tutorial I am using virtualbox)
-		--bootstrapper		-	Using for kubernetes kubeadm installation in minikube vm-driver		
-	    	--kubernetes-version	-	Use Kubernetes version which you want, I have tested the same using v1.16.0
-		--memory		-	Please specify the memory for minikube vm, default memory will be 2000mb
 
-After execution of above command wait for some time for VM to be up and running.
+| Options | Description |
+| ------ | ----------- |
+| --vm-driver |   Required for specifying driver type like virtualbox or sometime someone uses hypervisor. (In this  tutorial I am using virtualbox)|
+| --bootstrapper |   Using for kubernetes kubeadm installation in minikube vm-driver|		
+| --kubernetes-version |  Use Kubernetes version which you want, I have tested the same using v1.16.0|
+| --memory |  Please specify the memory for minikube vm, default memory will be 2000mb|
 
-## Verify minikube installation using below command (Use Gitbash for command execution):
+TODO: 
+> minikube.exe- Use the downloaded file for all minikube command execution
 
-	command - minikube.exe status
+> **After execution wait for some time for VM to be up and running.**
+
+#### Verify minikube installation using below command
+
+	minikube.exe status
 	
-		# Expected Output
+> Expected Output of above command
+
 			host: Running
 			kubelet: Running
 			apiserver: Running
 			kubeconfig: Configured
 
-## If you want to SSH in minikube VM then use below command (Use Gitbash for command execution):
-	command - minikube.exe ssh
+#### If you want to SSH in minikube VM then use below command 
 	
-## Add Kubectl config file location in environment variable (Use Windows UI)
+	minikube.exe ssh
 	
-	Sometime kubectl.exe command not able to find config(kubernetes config file for cluster context configuration, means current cluster/change cluster for connecting to minikube) file, It will be Better to configure the config file path using below process.
+#### Add Kubectl config file to Environment Variable
 	
- 	**Add in environment variable as mentioned below**
-		My-PC Properties->Advance System Settings-> Environment Variables(At bottom)-> Add new variable under User variable for user field, as mentioned below
+Sometime kubectl.exe command not able to find config file (Kubernetes config file required for connecting to minikube cluster), It's better to configure the config file path using below process.
+	
+**Use below process for configuration**
+
+	My-PC Properties->Advance System Settings-> Environment Variables(At bottom)-> Add new variable under User variable for user field, as mentioned below
 
 	Variable 	- KUBECONFIG
 	Value		- Kubectl context config file path (Default path- C:/Users/username/.kube/config)
 
-## Verify context added in file correctly for minikube (Use Gitbash for command execution)
+#### Verify context added in file correctly for minikube 
 	
-	command - kubectl.exe config get-contexts
+	kubectl.exe config get-contexts
 	
-	It will show the current context(Current pointing cluster), i.e. minikube 
+> It will show the current context(Current pointing cluster), i.e. minikube 
 	
-## Verify kubernetes installation in minikube VM, run below command (Use Gitbash for command execution)
+#### Verify kubernetes installation in minikube VM, run below command 
 	
-	command - kubectl.exe cluster-info
+	kubectl.exe cluster-info
 	
-	This command will tell status for running kubernetes cluster.
-	Note:- Make sure for kubectl.exe always use the one which is installed in 3-step.
+> This command will tell status for running kubernetes cluster.
 
-## Sample app installation in minikube cluster (Use Gitbash for command execution)
+#### Sample app installation in minikube cluster 
 
-	**Install Sample app**
-	command - kubectl.exe create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.10
-			-	create		-	It will create/apply new configuration in kubernetes.
-			-	deployment	-	Please follow below mentioned link.
-			-	hello-minikube	-	deployment name you can provide whatever name you like
-			-	--image		-	It will fetch the image which is present in gcr.io repo
-							(Image starting name will specify the centralized repo name),
-							If not present in local docker repo.		
-		
-		It will deploy below kubernetes resources
+	kubectl.exe create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.10
+
+| Options | Description |
+| ------ | ----------- |
+| create | Will create/apply new configuration in kubernetes |
+| deployment | Please follow below mentioned link |
+| hello-minikube | Deployment name you can provide whatever name you like | | --image |	It will fetch the image which is present in gcr.io repo (Image starting name will specify the centralized repo name),If not present in local docker repo |		It will deploy below kubernetes resources
 					-	deployments- https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 					-	Service	-	https://kubernetes.io/docs/concepts/services-networking/service/
 					-	ReplicaSet-	https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
