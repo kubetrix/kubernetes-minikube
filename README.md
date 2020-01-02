@@ -12,8 +12,6 @@ Minikube kubernetes setup guide using VirtualBox(Windows)
 
 	> Note:- Use Gitbash for all command execution
 	
-#### Getting Started
-
 #### Setup VirtualBox
 	
 	https://www.virtualbox.org/wiki/Downloads
