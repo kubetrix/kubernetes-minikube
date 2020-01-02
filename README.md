@@ -16,7 +16,7 @@ Minikube kubernetes setup guide using VirtualBox(Windows)
 	-	https://www.virtualbox.org/wiki/Downloads
 	
 ### Download Minikube 
-	command - curl -L https://github.com/kubernetes/minikube/releases/download/v1.5.2/minikube-windows-amd64.exe --output minikube.exe
+	** command ** - curl -L https://github.com/kubernetes/minikube/releases/download/v1.5.2/minikube-windows-amd64.exe --output minikube.exe
 	
 ### Download kubernetes (Use Gitbash for command execution)
 	command - curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.16.0/bin/windows/amd64/kubectl.exe --output kubectl.exe
