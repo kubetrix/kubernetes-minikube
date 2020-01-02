@@ -23,7 +23,7 @@ Minikube kubernetes setup guide using VirtualBox(Windows)
 
 ## Execute minikube below command (Use Gitbash for command execution)
 
-	command - minikube.exe start --vm-driver=virtualbox --bootstrapper=kubeadm --kubernetes-version=v1.16.0 --memory='4000mb'
+	<b>command</b> - minikube.exe start --vm-driver=virtualbox --bootstrapper=kubeadm --kubernetes-version=v1.16.0 --memory='4000mb'
 
 		minikube.exe		-	Use the downloaded file for all minikube command execution
 		--vm-driver		-	Required for specifying driver type like virtualbox or sometime someone uses hypervisor.
