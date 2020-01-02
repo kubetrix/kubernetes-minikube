@@ -119,3 +119,15 @@ After execution of above command wait for some time for VM to be up and running.
 	
 	-- install helm v3.0.2 tiller is removed.
 	-- helm repo add stable https://kubernetes-charts.storage.googleapis.com/ (Official repo)
+	
+### UNInstall Minikube/Kubectl  
+	Stop running Minikube VM
+		-	minikube.exe stop
+	Delete Minikube VM configuration
+		-	minikube.exe delete
+	Delete Folder Manually
+		Delete Minikube Folder
+			- C:\users\{user}\.minikube
+		
+		Delete Kubectl Folder
+			- C:\users\{user}\.kube	
