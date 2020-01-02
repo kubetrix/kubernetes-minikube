@@ -133,14 +133,31 @@ Here we are eposing sample app to outside the cluster on node(VM) level.
 > Run the exposed url in browser, you will be able to access the deployment.
 
 ### Setup minikube with RBAC(Secured)
-	-	https://medium.com/@HoussemDellai/rbac-with-kubernetes-in-minikube-4deed658ea7b
-	-  	https://docs.bitnami.com/kubernetes/how-to/configure-rbac-in-your-kubernetes-cluster/ (Used)
+
+    ----------------Coming Soon----------------------
 
 ### Install helm 
-	-	helm init --service-account tiller --override spec.selector.matchLabels.'name'='tiller',spec.selector.matchLabels.'app'='helm' --output yaml | sed 's@apiVersion: extensions/v1beta1@apiVersion: apps/v1@' | kubectl.exe apply -f -
-	
-	-- install helm v3.0.2 tiller is removed.
-	-- helm repo add stable https://kubernetes-charts.storage.googleapis.com/ (Official repo)
+ Install Helm v3.0.2+ , Will be useful for windows	
+
+    https://github.com/helm/helm/releases
+
+* Download helm-v3.0.2 using chocolatey plugin.
+
+        https://chocolatey.org/docs/installation
+
+* Use below command for helm installation
+
+        choco install kubernetes-helm
+
+
+**Benefits**
+* Tiller is removed, So no more Tiller Server connection issue.
+
+        helm repo add stable https://kubernetes-charts.storage.googleapis.com/ (Official repo)
+
+###### Install helm lower version(Not preferable)
+
+    	helm init --service-account tiller --override spec.selector.matchLabels.'name'='tiller',spec.selector.matchLabels.'app'='helm' --output yaml | sed 's@apiVersion: extensions/v1beta1@apiVersion: apps/v1@' | kubectl.exe apply -f -
 	
 #### UnInstall Minikube/Kubectl  
 > Stop Minikube VM
