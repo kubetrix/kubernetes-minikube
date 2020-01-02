@@ -80,43 +80,59 @@ Sometime kubectl.exe command not able to find config file (Kubernetes config fil
 	
 > This command will tell status for running kubernetes cluster.
 
-#### Sample app installation in minikube cluster 
+## Sample app installation in minikube cluster 
 
+#### Deploy Sample App
 	kubectl.exe create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.10
 
 | Options | Description |
 | ------ | ----------- |
 | create | Will create/apply new configuration in kubernetes |
 | deployment | Please follow below mentioned link |
-| hello-minikube | Deployment name you can provide whatever name you like | | --image |	It will fetch the image which is present in gcr.io repo (Image starting name will specify the centralized repo name),If not present in local docker repo |		It will deploy below kubernetes resources
-					-	deployments- https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
-					-	Service	-	https://kubernetes.io/docs/concepts/services-networking/service/
-					-	ReplicaSet-	https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+| hello-minikube | Deployment name you can provide whatever name you like |
+| --image |	It will fetch the image which is present in gcr.io repo (Image starting name will specify the centralized repo name), If not present in local docker repo |	
 
-	**Expose sample app deployment using NodePort**
+> It will deploy below kubernetes resources
+
+| Kubernetes Resource | Docs |
+| ------ | ----------- |
+| deployments | https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ |
+| Service |	https://kubernetes.io/docs/concepts/services-networking/service/ |
+| ReplicaSet | https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/ |
+
+
+#### Expose sample app deployment using NodePort
 	
-		> Expose using below command
-			command - kubectl.exe expose deployment hello-minikube --type=NodePort --port=8080 
+	kubectl.exe expose deployment hello-minikube --type=NodePort --port=8080 
 		
-			Here we are eposing sample app to outside the cluster on node(VM) level.
-			-	expose		-	We usually use expose for exposing the services to outer world
-			-	deployment	-	As mentioned above
-			-	hello-minikube	-	above used deployment name
-			-	--type		-	Using NodePort type, It will expose the deployment to node. 
-							In kubernetes we have 3 port type.
-							-NodePort	-	It will expose deployment to node level.
-							-ClusterIP	-	It will expose deployment to cluster level.
-							-LoadBalancer	-	It will expose deployment to LoadBalancer.
-			-	--port		-	exposed port no, So now this service is exposed on minikube VM port 8080.
+Here we are eposing sample app to outside the cluster on node(VM) level.
+| Options | Description |
+| ------ | ----------- |
+| expose | We usually use expose for exposing the services to outer world | 
+| deployment | 	Kubernetes Resource, As mentioned Previously |
+| hello-minikube | Previously used deployment name |
+| --type | Using NodePort type, It will expose the deployment to node(VM Level) |  
+| --port | exposed port no, So now this service is exposed on minikube VM port 8080 |
 
-		> Verify sample app status
-			command - kubectl get pods(verify pod is running or not)
-			command - kubectl get svc (verify svc is exposed on particualar port)
+##### In kubernetes mainly we have 3 type of service
+
+| ServiceTypes	 | Description | Docs Link |
+| ------ | ----------- | --------- |
+| NodePort | Expose deployment to node level | https://kubernetes.io/docs/concepts/services-networking/service/#nodeport | 
+| ClusterIP | Expose deployment to cluster level | https://kubernetes.io/docs/concepts/services-networking/service/ |
+| LoadBalancer | Expose deployment to LoadBalancer | https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer | 
+
+#### Verify sample app status
 	
-		> Fetch Exposed service url using below command	
-			command - minikube.exe service hello-minikube --url
+* kubectl get pods (verify pod is running or not)
+	
+* kubectl get svc (verify svc is exposed on particualar port)
+	
+#### Access application 	
+		
+		minikube.exe service hello-minikube --url
 
-		> Run the exposed url in browser, you will be able to access the deployment.
+> Run the exposed url in browser, you will be able to access the deployment.
 
 ### Setup minikube with RBAC(Secured)
 	-	https://medium.com/@HoussemDellai/rbac-with-kubernetes-in-minikube-4deed658ea7b
@@ -128,16 +144,18 @@ Sometime kubectl.exe command not able to find config file (Kubernetes config fil
 	-- install helm v3.0.2 tiller is removed.
 	-- helm repo add stable https://kubernetes-charts.storage.googleapis.com/ (Official repo)
 	
-### UNInstall Minikube/Kubectl  
-	> Stop Minikube VM
-		command - minikube.exe stop
+#### UnInstall Minikube/Kubectl  
+> Stop Minikube VM
+	
+	minikube.exe stop
 		
-	> Delete Minikube VM configuration
-		command - minikube.exe delete
+> Delete Minikube VM configuration
 		
-	> Delete Folder Manually
-		Delete Minikube Folder
-			- C:\users\{user}\.minikube
+	minikube.exe delete
 		
-		Delete Kubectl Folder
-			- C:\users\{user}\.kube	
+> Delete below Folder Manually
+		
+		Minikube Folder - C:\users\{user}\.minikube
+		
+		Kubectl Folder - C:\users\{user}\.kube	
+		
