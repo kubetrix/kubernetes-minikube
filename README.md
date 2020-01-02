@@ -99,6 +99,7 @@ Sometime kubectl.exe command not able to find config file (Kubernetes config fil
 	kubectl.exe expose deployment hello-minikube --type=NodePort --port=8080 
 		
 Here we are eposing sample app to outside the cluster on node(VM) level.
+
 | Options | Description |
 | ------ | ----------- |
 | expose | We usually use expose for exposing the services to outer world | 
